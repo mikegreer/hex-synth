@@ -9,7 +9,6 @@ function Piece(props) {
 			isDragging: !!monitor.isDragging(console.log()),
 		}),
   })
-  console.log(props.scale)
 
   return (
     <g 

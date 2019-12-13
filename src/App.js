@@ -16,9 +16,12 @@ class App extends Component {
             items: getItems(10),
             grid: [],
             saveFiles: [],
+            piecePosition: {x: 0, y: 0}
         };
         // this.onDragEnd = this.onDragEnd.bind(this);
         this.state.grid = this.generateGrid(7, 6);
+        // this.state.piecePosition = this.props.piecePosition
+        // console.log(this.props)
     }
     
     componentDidMount = () => {
@@ -92,6 +95,7 @@ class App extends Component {
                     <HexGrid
                         grid = {this.state.grid}
                         cellSize = {30}
+                        piecePosition = {this.props.piecePosition}
                     ></HexGrid>
                 </div>
                 <Menu items={this.state.items}></Menu>

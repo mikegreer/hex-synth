@@ -39,13 +39,14 @@ import TouchBackend from 'react-dnd-touch-backend'
 //         );
 //     }
 // }
-function renderPiece(x, y, scale) {
-    if (x === 1 && y === 1) {
+function renderPiece(scale, hasPiece) {
+    if(hasPiece) {
         return <Piece scale={scale} />
     }
+    return;
 }
 
-function Hexagon({gridPosition, coordinates, scale}) {
+function Hexagon({gridPosition, coordinates, scale, hasPiece}) {
     const [{ isOver }, drop] = useDrop({
         accept: ItemTypes.PIECE,
         drop: () => movePiece(gridPosition.x, gridPosition.y),
@@ -82,7 +83,8 @@ function Hexagon({gridPosition, coordinates, scale}) {
                 fill="none" 
                 strokeWidth="1"
                 className={classNames("hex")}
-            ></polygon>{renderPiece(gridPosition.x, gridPosition.y, scale)}
+            ></polygon>
+                {renderPiece(scale, hasPiece)}
             {isOver && (
                 <g className="router">
                     <circle cx={scale * Math.sqrt(3) / 2} cy="0" r={scale/2} stroke="red" fill="none" strokeWidth="5" />
@@ -110,15 +112,14 @@ class HexGrid extends React.Component {
         //TODO: part of below temp moving calcs
         const cellHeight = (hexScale * 2) * .75;
         const cellWidth = Math.sqrt(3) * hexScale;
-
         this.props.grid.forEach((row, rowIndex) => {
             row.forEach((hex, colIndex) => {
                 const gridX = rowIndex % 2 ? colIndex * cellWidth : colIndex * cellWidth + (cellWidth / 2);
                 const gridY = rowIndex * cellHeight + cellHeight / 2;
                 hexGrid.push(<Hexagon
-                    style={this.getHexStyle()}
+                    // style={this.getHexStyle()}
                     key={hex.id}
-                    cellIndex={hex.id}
+                    hasPiece={colIndex === this.props.piecePosition[0] && rowIndex === this.props.piecePosition[1]}
                     scale={hexScale}
                     coordinates = {{x: gridX, y: gridY}}
                     gridPosition = {{x: colIndex, y: rowIndex}}
