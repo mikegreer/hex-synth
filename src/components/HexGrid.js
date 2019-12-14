@@ -87,7 +87,7 @@ function Hexagon({gridPosition, coordinates, scale, hasPiece}) {
                 {renderPiece(scale, hasPiece)}
             {isOver && (
                 <g className="router">
-                    <circle cx={scale * Math.sqrt(3) / 2} cy="0" r={scale/2} stroke="red" fill="none" strokeWidth="5" />
+                    <circle cx={scale * Math.sqrt(3) / 2} cy="0" r={scale/2} stroke="red" fill="red" strokeWidth="5" />
                 </g>
             )}
         </g>

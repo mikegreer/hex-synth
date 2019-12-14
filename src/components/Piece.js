@@ -19,7 +19,7 @@ function Piece(props) {
             cursor: 'move',
         }}
     >
-        <circle cx={props.scale * Math.sqrt(3) / 2} cy="0" r={props.scale/2} stroke="red" fill="none" strokeWidth="5" />
+        <circle cx={props.scale * Math.sqrt(3) / 2} cy="0" r={props.scale/2} stroke="red" fill="red" strokeWidth="5" />
         {/* <circle cx={0} cy="0" r={10} stroke="red" fill="none" strokeWidth="5"  /> */}
     </g>
   )
